@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\FPT\\CN8\\PRN231\\CODE\\PE_github\\PE\\PE.csproj": {}
+    "E:\\FPT\\CN8\\PRN231\\CODE\\PE\\ecomerce_asp.net_core_5.0\\PE.csproj": {}
   },
   "projects": {
-    "E:\\FPT\\CN8\\PRN231\\CODE\\PE_github\\PE\\PE.csproj": {
+    "E:\\FPT\\CN8\\PRN231\\CODE\\PE\\ecomerce_asp.net_core_5.0\\PE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\FPT\\CN8\\PRN231\\CODE\\PE_github\\PE\\PE.csproj",
+        "projectUniqueName": "E:\\FPT\\CN8\\PRN231\\CODE\\PE\\ecomerce_asp.net_core_5.0\\PE.csproj",
         "projectName": "PE",
-        "projectPath": "E:\\FPT\\CN8\\PRN231\\CODE\\PE_github\\PE\\PE.csproj",
+        "projectPath": "E:\\FPT\\CN8\\PRN231\\CODE\\PE\\ecomerce_asp.net_core_5.0\\PE.csproj",
         "packagesPath": "C:\\Users\\hodac\\.nuget\\packages\\",
-        "outputPath": "E:\\FPT\\CN8\\PRN231\\CODE\\PE_github\\PE\\obj\\",
+        "outputPath": "E:\\FPT\\CN8\\PRN231\\CODE\\PE\\ecomerce_asp.net_core_5.0\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hodac\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nx4UgE/XQ4c5WpBi0OKWpX3EFJLZwbGr4TEnKoV8QrDHAE/ggkfd+eAmGfqvVPUjRvHprNq4u3QlT0VaYKmjbw==",
+  "dgSpecHash": "zZBlgL3Gkror4YV+E/bycwEgmfFKfRL8BUHMobmbkussSIZuIPTX28J28HnIDBqFesVCqCtLoxH+gbwK1GQ4Nw==",
   "success": true,
-  "projectFilePath": "E:\\FPT\\CN8\\PRN231\\CODE\\PE_github\\PE\\PE.csproj",
+  "projectFilePath": "E:\\FPT\\CN8\\PRN231\\CODE\\PE\\ecomerce_asp.net_core_5.0\\PE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hodac\\.nuget\\packages\\aspnetcorehero.toastnotification\\1.1.0\\aspnetcorehero.toastnotification.1.1.0.nupkg.sha512",
     "C:\\Users\\hodac\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
