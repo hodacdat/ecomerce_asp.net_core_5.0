@@ -1,0 +1,145 @@
+﻿@model PE.Models.Page
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<head>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Admin/assets/images/logo/favicon.png">
+
+    <!-- page css -->
+    <link href="~/Admin/assets/vendors/select2/select2.css" rel="stylesheet">
+
+    <!-- Core css -->
+    <link href="~/Admin/assets/css/app.min.css" rel="stylesheet">
+</head>
+
+<h1>Edit: @Model.Title</h1>
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a asp-area="Admin" asp-controller="AdminPages" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Page list</a>
+            <span class="breadcrumb-item active">Edit: @Model.Title</span>
+        </nav>
+    </div>
+</div>
+
+<h4>Page</h4>
+<hr />
+<form asp-controller="AdminPages" asp-action="Edit" asp-route-id="@Model.PageId" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="PageId" />
+    <input type="hidden" asp-for="CreateDate" />
+    <input type="hidden" asp-for="Thumb" />
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">Basic Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-edit-option">Option Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-edit-description">Description</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-9">
+                            <label class="font-weight-semibold" asp-for="PageName">Page Name</label>
+                            <input asp-for="PageName" class="form-control" />
+                            <span asp-validation-for="PageName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group  col-md-3">
+                            <label class="font-weight-semibold" asp-for="Title">Title</label>
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-semibold" asp-for="Thumb">Thumbnail</label>
+                    <input name="fThumb" asp-for="Thumb" type="file" class="form-control-file" />
+                </div>
+                <div class="row">
+                    <div class="m-t-25">
+                        <div class="form-group d-flex align-items-center">
+                            <div class="switch m-r-10">
+                                <input type="checkbox" asp-for="Published" />
+                                <label for="Published"></label>
+                            </div>
+                            <label>Published</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="product-edit-option">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="MetaDesc">MetaDesc</label>
+                        <input asp-for="MetaDesc" class="form-control" />
+                        <span asp-validation-for="MetaDesc" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="MetalKey">MetalKey</label>
+                        <input asp-for="MetalKey" class="form-control" />
+                        <span asp-validation-for="MetalKey" class="text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="product-edit-description">
+            <div class="card">
+                @*<div class="card-body">
+                    <div id="productDescription">
+                        <label class="font-weight-semibold" asp-for="Contents">Content</label>
+                        <input asp-for="Contents" class="form-control" />
+                    </div>
+                </div>*@
+                <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Contents">Contents</label>
+                        <input asp-for="Contents" class="form-control" />
+                        <span asp-validation-for="Contents" class="text-danger"></span>
+                    </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<!-- Core Vendors JS -->
+<script src="~/Admin/assets/js/vendors.min.js"></script>
+
+@section Scripts{
+    <script>
+        new Quill('#productDescription', {
+            theme: 'snow'
+        })
+    </script>
+
+    <script src="~/Admin/assets/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/assets/vendors/quill/quill.min.js"></script>
+    <script src="~/Admin/assets/js/pages/e-commerce-product-edit.js"></script>
+
+}
+    <!-- page js -->
+    <!-- Core JS -->
+    <script src="~/Admin/assets/js/app.min.js"></script>
+

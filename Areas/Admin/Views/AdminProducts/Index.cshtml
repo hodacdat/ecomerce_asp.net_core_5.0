@@ -1,0 +1,184 @@
+﻿@*@model PE.Models.paging.Paging*@
+
+@*@model IEnumerable<PE.Models.Product>*@
+
+@model PE.Models.paging.PaginatedList<PE.Models.Product>
+@{
+    ViewData["Title"] = "Product ";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Product list</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+
+<!--link-->
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <span class="breadcrumb-item active">Product list page: @Model.PageIndex</span>
+        </nav>
+    </div>
+</div>
+
+<!--search-->
+<div style="display: flex; justify-content: space-between;">
+    <!--search category-->
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-primary" /> |
+                <a asp-action="Index">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+
+    <!--search category-->
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by category: <input type="text" name="SearchCate" />
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </p>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="white-box">
+            <div style="display: flex; justify-content: space-between;">
+                <h3 class="box-title">Product Table</h3>
+                <a class="btn btn-info" asp-action="Create">Create new</a>
+                <a class="btn btn-secondary" asp-controller="AdminCategories" asp-action="Index">Category</a>
+            </div>
+            <div class="table-responsive">
+                @*<form asp-action="Index" asp-controller="AdminProducts" asp-area="Admin" method="post">*@
+                <table class="table text-nowrap">
+                    <thead>
+                        <tr>
+                            <th class="border-top-0">ID</th>
+                            <th class="border-top-0">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Product Name</a>
+                            </th>
+                            <th class="border-top-0">Short Description</th>
+                            <th class="border-top-0">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["Category"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Category</a>
+                            </th>
+                            <th class="border-top-0">UnitInStock</th>
+                            <th class="border-top-0">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["Price"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Price</a>
+                            </th>
+                            <th class="border-top-0">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["Status"]">Status</a>
+                            </th>
+                            <th class="border-top-0">#</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td scope="row">@item.ProductId</td>
+                                    <td>@item.ProductName</td>
+                                    <td>@item.ShortDesc</td>
+                                    <td>
+                                        @if (@item.Cat == null)
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Unknow</div>
+                                            </div>
+
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>@item.Cat.CatName</div>
+                                            </div>
+
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (@item.UnitInStock == null)
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Unknow</div>
+                                            </div>
+
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>@item.UnitInStock</div>
+                                            </div>
+
+                                        }
+                                    </td>
+                                    <td> $ @item.Price</td>
+                                    <td>
+                                        @if (item.Active)
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Active</div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Block</div>
+                                            </div>
+                                        }
+                                    </td>
+
+                                    <td>
+                                        <a class="btn btn-primary btn-tone m-r-5"
+                                   asp-area="Admin" asp-controller="AdminProducts" asp-action="Details" asp-route-id="@item.ProductId">View</a>
+                                        <a class="btn btn-secondary btn-tone m-r-5"
+                                   asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.ProductId">Edit</a>
+                                        <a class="btn btn-success btn-tone m-r-5"
+                                   asp-area="Admin" asp-controller="AdminProducts" asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                @{
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-facebook @prevDisabled">
+                    Previous
+                </a>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-danger @nextDisabled">
+                    Next
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

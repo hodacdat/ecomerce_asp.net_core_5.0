@@ -1,0 +1,177 @@
+﻿@model PE.Models.paging.PaginatedList<PE.Models.Customer>
+
+@{
+    ViewData["Title"] = "Customer list";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Customer list</h1>
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <span class="breadcrumb-item active">Customer list page: @Model.PageIndex</span>
+        </nav>
+    </div>
+</div>
+
+
+<!--search-->
+<div style="display: flex; justify-content: space-between;">
+    <!--search category-->
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-primary" /> |
+                <a asp-action="Index">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="white-box">
+            <div style="display: flex; justify-content: space-between;">
+                <h3 class="box-title">Customer Table</h3>
+                <a class="btn btn-info" asp-action="Create">Create new</a>
+            </div>
+            <div class="table-responsive">
+                <table class="table text-nowrap">
+                    <thead>
+                        <tr>
+                            <th class="border-top-0">ID</th>
+                            <th class="border-top-0">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">FullName</a>
+                            </th>
+                            <th class="border-top-0">Email</th>
+                            <th class="border-top-0">Phone</th>
+                            <th class="border-top-0">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["AddressSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Address</a>
+                            </th>
+                            <th class="border-top-0">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["LocationSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Location</a>
+                            </th>
+                            @*  <th class="border-top-0">CreateDate</th>
+                            <th class="border-top-0">LastLogin</th>
+                            <th class="border-top-0">Active</th>*@
+                            <th class="border-top-0">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td scope="row">@item.CustomerId</td>
+                                    <td>@item.FullName</td>
+                                    <td>
+                                        @if (@item.Email == null)
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Unknow</div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>@item.Email</div>
+                                            </div>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (@item.Phone == null)
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Unknow</div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>@item.Phone</div>
+                                            </div>
+                                        }
+                                    </td>
+                                    <td>@item.Address</td>
+                                    <td>
+                                        @if (@item.Location == null)
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Unknow</div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>@item.Location.Name</div>
+                                            </div>
+                                        }
+                                    </td>
+
+
+                                    @* <td>@item.CreateDate</td>
+                            <td>@item.LastLogin</td>
+                            <td>
+                            @if (item.Active)
+                            {
+                            <div class="d-flex align-items-center">
+                            <div class="badge badge-success badge-dot m-r-10"></div>
+                            <div>Active</div>
+                            </div>
+                            }
+                            else
+                            {
+                            <div class="d-flex align-items-center">
+                            <div class="badge badge-success badge-dot m-r-10"></div>
+                            <div>Block</div>
+                            </div>
+                            }
+                            </td>*@
+
+                                    <td>
+                                        <a class="btn btn-primary btn-tone m-r-5"
+                                   asp-area="Admin" asp-controller="AdminCustomers" asp-action="Details" asp-route-id="@item.CustomerId">View</a>
+                                        <a class="btn btn-secondary btn-tone m-r-5"
+                                   asp-area="Admin" asp-controller="AdminCustomers" asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a>
+                                        <a class="btn btn-success btn-tone m-r-5"
+                                   asp-area="Admin" asp-controller="AdminCustomers" asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                @{
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-facebook @prevDisabled">
+                    Previous
+                </a>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-danger @nextDisabled">
+                    Next
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

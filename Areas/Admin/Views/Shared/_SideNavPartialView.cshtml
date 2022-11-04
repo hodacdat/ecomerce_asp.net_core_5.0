@@ -1,0 +1,91 @@
+﻿<aside class="left-sidebar" data-sidebarbg="skin6">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <!-- User Profile-->
+                <li class="sidebar-item pt-2">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                       asp-area="Admin" asp-controller="Home" asp-action="Index"
+                       aria-expanded="false">
+                        <i class=" fas fa-chart-bar" aria-hidden="true"></i>
+                        <span class="hide-menu">Sumary</span>
+                    </a>
+                </li>
+                <li class="sidebar-item pt-2">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
+                       aria-expanded="false">
+                        <i class=" fas fa-box" aria-hidden="true"></i>
+                        <span class="hide-menu">Order management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                       asp-area="Admin" asp-controller="AdminCustomers" asp-action="Index"
+                       aria-expanded="false">
+                        <i class="fas fa-address-book" aria-hidden="true"></i>
+                        <span class="hide-menu">Customer management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                       asp-area="Admin" asp-controller="AdminProducts" asp-action="Index"
+                       aria-expanded="false">
+                        <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                        <span class="hide-menu">Product management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                       asp-area="Admin" asp-controller="AdminLocations" asp-action="Index"
+                       aria-expanded="false">
+                        <i class=" fas fa-compass" aria-hidden="true"></i>
+                        <span class="hide-menu">Location management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                       asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index"
+                       aria-expanded="false">
+                        <i class="fas fa-users" aria-hidden="true"></i>
+                        <span class="hide-menu">Account management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                       asp-area="Admin" asp-controller="AdminRoles" asp-action="Index"
+                       aria-expanded="false">
+                        <i class=" fas fa-shield-alt" aria-hidden="true"></i>
+                        <span class="hide-menu">Access management</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                       asp-area="Admin" asp-controller="AdminPages" asp-action="Index"
+                       aria-expanded="false">
+                        <i class=" far fa-newspaper" aria-hidden="true"></i>
+                        <span class="hide-menu">Blog</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                       asp-area="Admin" asp-controller="AdminShippers" asp-action="Index"
+                       aria-expanded="false">
+                        <i class=" fas fa-shipping-fast" aria-hidden="true"></i>
+                        <span class="hide-menu">Shipper</span>
+                    </a>
+                </li>
+                @*<li class="text-center p-20 upgrade-btn">
+                    <a href="https://www.wrappixel.com/templates/ampleadmin/"
+                       class="btn d-grid btn-danger text-white" target="_blank">
+                        Sales
+                    </a>
+                </li>*@
+            </ul>
+
+        </nav>
+        <!-- End Sidebar navigation -->
+    </div>
+    <!-- End Sidebar scroll-->
+</aside>

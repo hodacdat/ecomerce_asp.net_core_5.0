@@ -1,0 +1,195 @@
+﻿@model PE.Models.Product
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<head>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Admin/assets/images/logo/favicon.png">
+
+    <!-- page css -->
+    <link href="~/Admin/assets/vendors/select2/select2.css" rel="stylesheet">
+
+    <!-- Core css -->
+    <link href="~/Admin/assets/css/app.min.css" rel="stylesheet">
+</head>
+
+<h1>Create</h1>
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Product list</a>
+            <span class="breadcrumb-item active">Create</span>
+        </nav>
+    </div>
+</div>
+
+<h4>Product</h4>
+<hr />
+<form asp-controller="AdminProducts" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">Basic Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-edit-option">Option Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-edit-description">Description</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-9">
+                            <label class="font-weight-semibold" asp-for="ProductName">Product Name</label>
+                            <input asp-for="ProductName" class="form-control" />
+                            <span asp-validation-for="ProductName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group  col-md-3">
+                            <label class="font-weight-semibold" asp-for="UnitInStock">UnitInStock</label>
+                            <input asp-for="UnitInStock" class="form-control" />
+                            <span asp-validation-for="UnitInStock" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-semibold" asp-for="Price">Price</label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group  col-md-6">
+                            <label class="font-weight-semibold" asp-for="Discount">Discount(%)</label>
+                            <input asp-for="Discount" class="form-control" />
+                            <span asp-validation-for="Discount" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Cat">Category</label>
+                        <select class="custom-select" asp-for="CatId" style="min-width: 200px" asp-items="ViewBag.CatId">
+                            <option value="" disable selected>Select category</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Thumb">Thumbnail</label>
+                        <input name="fThumb" asp-for="Thumb" type="file" class="form-control-file" />
+                    </div>
+                    <div class="row">
+                        <div class="m-t-25">
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="Active" />
+                                    <label for="Active"></label>
+                                </div>
+                                <label>Active</label>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="HomeFlag" />
+                                    <label for="HomeFlag"></label>
+                                </div>
+                                <label>Home flag</label>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="BestSellers" />
+                                    <label for="BestSellers"></label>
+                                </div>
+                                <label>Best seller</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productStatus">Status</label>
+                        <select class="custom-select" id="productStatus">
+                            <option value="inStock" selected>In Stock</option>
+                            <option value="outOfStock">Out of Stock</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="product-edit-option">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="Title">Title</label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="MetaDesc">MetaDesc</label>
+                        <input asp-for="MetaDesc" class="form-control" />
+                        <span asp-validation-for="MetaDesc" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="MetalKey">MetalKey</label>
+                        <input asp-for="MetalKey" class="form-control" />
+                        <span asp-validation-for="MetalKey" class="text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="product-edit-description">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group ">
+                        <label class="font-weight-semibold" asp-for="ShortDesc">Short Description</label>
+                        <input asp-for="ShortDesc" class="form-control" />
+                        <span asp-validation-for="ShortDesc" class="text-danger"></span>
+                    </div>
+                    <div class="form-group ">
+                        <label class="font-weight-semibold" asp-for="Description">Description</label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    @*<div id="productDescription">
+                    <label class="font-weight-semibold" asp-for="Description">Description</label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<!-- Core Vendors JS -->
+<script src="~/Admin/assets/js/vendors.min.js"></script>
+
+@section Scripts{
+    <script>
+        new Quill('#productDescription', {
+            theme: 'snow'
+        })
+    </script>
+
+    <script src="~/Admin/assets/vendors/select2/select2.min.js"></script>
+    <script src="~/Admin/assets/vendors/quill/quill.min.js"></script>
+    <script src="~/Admin/assets/js/pages/e-commerce-product-edit.js"></script>
+
+}
+    <!-- page js -->
+    <!-- Core JS -->
+    <script src="~/Admin/assets/js/app.min.js"></script>
+

@@ -1,0 +1,125 @@
+﻿@model PE.Models.Customer
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Details</h1>
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a asp-area="Admin" asp-controller="AdminCustomers" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Customer list</a>
+            <span class="breadcrumb-item active">Detail</span>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-4 col-xlg-3 col-md-12">
+        <div class="white-box">
+            <div class="user-bg">
+                <img width="max" height="max" alt="user" src="~/images/products/@Model.Avatar">
+                
+            </div>
+            <div class="user-btm-box mt-5 d-md-flex">
+                <div class="col-md-4 col-sm-4 text-center">
+                    <h1>
+                        @if(@Model.Avatar != null)
+                        {
+                            <p>@Model.Avatar</p>
+                        }
+                        else
+                        {
+                           <p>Unknown</p> 
+                        }
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-8 col-xlg-9 col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group mb-4">
+                    <label class="col-md-12 p-0">Full Name</label>
+                    <div class="col-md-12 border-bottom p-0">
+                        <p>@Model.FullName</p>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Birthday</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.Birthday</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Email</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.Email</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Phone</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.Phone</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Create Date</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.CreateDate</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Price</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.Ward</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Discount</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.District %</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Location</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>
+                                @if (@Model.Location.Equals(null))
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <div class="badge badge-success badge-dot m-r-10"></div>
+                                        <div>Unknow</div>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <div class="badge badge-success badge-dot m-r-10"></div>
+                                        <div>@Model.Location.Name</div>
+                                    </div>
+
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Active</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.Active</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+

@@ -1,0 +1,132 @@
+﻿@model PE.Models.paging.PaginatedList<PE.Models.Shipper>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Shipper list</h1>
+
+<!--link-->
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <span class="breadcrumb-item active">Shipper list page: @Model.PageIndex</span>
+        </nav>
+    </div>
+</div>
+
+<!--search-->
+<div style="display: flex; justify-content: space-between;">
+    <!--search category-->
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                <input type="submit" value="Search" class="btn btn-primary" /> |
+                <a asp-action="Index">Back to Full List</a>
+            </p>
+        </div>
+    </form>
+
+    <!--search category-->
+    <form asp-action="Index" method="get">
+        <div class="form-actions no-color">
+            <p>
+                Find by company: <input type="text" name="SearchCate" />
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </p>
+        </div>
+    </form>
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="white-box">
+            <div style="display: flex; justify-content: space-between;">
+                <h3 class="box-title">Shipper Table</h3>
+                <a class="btn btn-info" asp-action="Create">Create new</a>
+            </div>
+            <div class="table-responsive">
+                @*<form asp-action="Index" asp-controller="AdminProducts" asp-area="Admin" method="post">*@
+                <table class="table text-nowrap">
+                    <thead>
+                        <tr>
+                            <th class="border-top-0">ID</th>
+                            <th class="border-top-0">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Shipper Name</a>
+                            </th>
+                            <th class="border-top-0"> Phone</th>
+                            <th class="border-top-0">
+                                <a asp-action="Index" asp-route-sortOrder="@ViewData["Company"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Company</a>
+                            </th>
+                            <th class="border-top-0">#</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td scope="row">@item.ShipperId</td>
+                                    <td>@item.ShipperName</td>
+                                    <td>@item.Phone</td>
+                                    <td>
+                                        @if (@item.Company == null)
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>Unknow</div>
+                                            </div>
+
+                                        }
+                                        else
+                                        {
+                                            <div class="d-flex align-items-center">
+                                                <div class="badge badge-success badge-dot m-r-10"></div>
+                                                <div>@item.Company</div>
+                                            </div>
+
+                                        }
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-primary btn-tone m-r-5"
+                                   asp-area="Admin" asp-controller="AdminShippers" asp-action="Details" asp-route-id="@item.ShipperId">View</a>
+                                        <a class="btn btn-secondary btn-tone m-r-5"
+                                   asp-area="Admin" asp-controller="AdminShippers" asp-action="Edit" asp-route-id="@item.ShipperId">Edit</a>
+                                        <a class="btn btn-success btn-tone m-r-5"
+                                   asp-area="Admin" asp-controller="AdminShippers" asp-action="Delete" asp-route-id="@item.ShipperId">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                @{
+                    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+                }
+
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-facebook @prevDisabled">
+                    Previous
+                </a>
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-danger @nextDisabled">
+                    Next
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

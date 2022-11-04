@@ -1,0 +1,135 @@
+﻿@model PE.Models.Product
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Details</h1>
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a asp-area="Admin" asp-controller="AdminProducts" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Product list</a>
+            <span class="breadcrumb-item active">Details</span>
+        </nav>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-4 col-xlg-3 col-md-12">
+        <div class="white-box">
+            <div class="user-bg">
+                <img width="max" height="max" alt="product" src="~/images/products/@Model.Thumb">
+                
+            </div>
+            <div class="user-btm-box mt-5 d-md-flex">
+                <div class="col-md-4 col-sm-4 text-center">
+                    <h1>
+                        @if(@Model.Thumb != null)
+                        {
+                            <p>@Model.Thumb</p>
+                        }
+                        else
+                        {
+                           <p>Unknown</p> 
+                        }
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+    <!-- Column -->
+    <div class="col-lg-8 col-xlg-9 col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="form-group mb-4">
+                    <label class="col-md-12 p-0">Full Name</label>
+                    <div class="col-md-12 border-bottom p-0">
+                        <p>@Model.ProductName</p>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Title</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.Title</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Unit in stock</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.UnitInStock</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Short Description</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.ShortDesc</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Description</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.Description</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Price</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.Price</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Discount</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.Discount %</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Category</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>
+                                @if (@Model.Cat == null)
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <div class="badge badge-success badge-dot m-r-10"></div>
+                                        <div>Unknow</div>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="d-flex align-items-center">
+                                        <div class="badge badge-success badge-dot m-r-10"></div>
+                                        <div>@Model.Cat.CatName</div>
+                                    </div>
+
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Home flag</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.HomeFlag</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Active</label>
+                        <div class="col-md-12 border-bottom p-0">
+                            <p>@Model.Active</p>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label class="col-md-12 p-0">Best sellers</label>
+                        <p>@Model.BestSellers</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Column -->
+</div>
+
