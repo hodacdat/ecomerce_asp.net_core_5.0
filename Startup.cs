@@ -1,7 +1,9 @@
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Notyf.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +36,22 @@ namespace PE
 
             services.AddSingleton<HtmlEncoder>(HtmlEncoder.Create(allowedRanges: new[] { UnicodeRanges.All }));
 
+            services.AddSession();
+            //services.AddSession(option =>
+            //{
+            //    option.IdleTimeout = TimeSpan.FromDays(1);
+            //    option.Cookie.HttpOnly = true;
+            //});
+
+            //services.AddDistributedMemoryCache();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(
+                option =>
+                {
+                    option.LoginPath = "/login.html";
+                    option.AccessDeniedPath = "/";
+                });
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
@@ -54,10 +72,12 @@ namespace PE
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+            //app.UseCookiePolicy();
 
             app.UseEndpoints(endpoints =>
             {

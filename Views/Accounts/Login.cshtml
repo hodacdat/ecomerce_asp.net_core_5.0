@@ -1,0 +1,100 @@
+﻿@model PE.ModelView.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Admin/assets/images/logo/favicon.png">
+
+    <!-- page css -->
+    <!-- Core css -->
+    @*<link href="~/Admin/assets/css/app.min.css" rel="stylesheet">*@
+
+</head>
+
+<body>
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-center">
+                        <h2>Sign in</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app">
+        <div class="container-fluid p-h-0 p-v-20 bg full-height d-flex" style="background-image: url('~/Admin/assets/images/others/login-3.png')">
+            <div class="d-flex flex-column justify-content-between w-100">
+                <div class="container d-flex h-100">
+                    <div class="row align-items-center w-100">
+                        <div class="col-md-7 col-lg-5 m-h-auto">
+                            <div class="card shadow-lg">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center justify-content-between m-b-30">
+                                        @*<img class="img-fluid" alt="" src="~/Admin/assets/images/logo/logo.png">*@
+                                        @*<h2 class="m-b-0">Sign In</h2>*@
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <form class="form-group col-md-12 col-md-offset-10 align-center" asp-controller="Accounts" asp-action="Login" method="post">
+                                        
+                                        <div class="form-group">
+                                            <label class="font-weight-semibold" asp-for="Email">Email</label>
+                                            <input type="email" class="form-control" asp-for="Email" placeholder="Email">
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="font-weight-semibold" asp-for="Password">Password</label>
+                                            <input type="password" class="form-control" asp-for="Password" placeholder="Password">
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+                                        </div>
+                                       
+                                        <div class="form-group">
+                                            <div class="d-flex align-items-center justify-content-between p-t-15">
+                                                <div class="checkbox">
+                                                    <input id="checkbox" type="checkbox">
+                                                    <label for="checkbox"><span>I have read the <a href="">agreement</a></span></label>
+                                                </div>
+                                                <input type="submit" class="btn btn-primary" value="Create" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-none d-md-flex p-h-40 justify-content-between">
+                    <span class="">© 2019 ThemeNate</span>
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a class="text-dark text-link" href="">Legal</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-dark text-link" href="">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Core Vendors JS -->
+    <script src="~/Admin/assets/js/vendors.min.js"></script>
+
+    <!-- page js -->
+    <!-- Core JS -->
+    <script src="~/Admin/assets/js/app.min.js"></script>
+
+</body>
