@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using PE.ModelView;
 
 #nullable disable
 
@@ -361,5 +362,9 @@ namespace PE.Models
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+        public DbSet<PE.ModelView.RegisterVM> RegisterVM { get; set; }
+
+        public DbSet<PE.ModelView.LoginViewModel> LoginViewModel { get; set; }
     }
 }
